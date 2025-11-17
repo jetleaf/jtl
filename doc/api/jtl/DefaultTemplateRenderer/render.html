@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the render method from the DefaultTemplateRenderer class, for the Dart programming language.">
+  <title>render method - DefaultTemplateRenderer class - jtl library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">jtl</a></li>
+    <li><a href="../../jtl/">jtl.dart</a></li>
+    <li><a href="../../jtl/DefaultTemplateRenderer-class.html">DefaultTemplateRenderer</a></li>
+    <li class="self-crumb">render method</li>
+  </ol>
+  <div class="self-name">render</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="jtl&#47;DefaultTemplateRenderer-class-sidebar.html"
+    data-below-sidebar="">
+    <div>
+<h1><span class="kind-method">render</span> method 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.dart.dev/stable/3.9.2/dart-core/override-constant.html">override</a></li>
+    </ol>
+  </div>
+<span class="returntype"><a href="../../jtl/SourceCode-class.html">SourceCode</a></span>
+<span class="name ">render</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="render-param-template"><span class="type-annotation"><a href="../../jtl/Template-class.html">Template</a></span> <span class="parameter-name">template</span>, </span></li>
+<li><span class="parameter" id="render-param-context"><span class="type-annotation"><a href="../../jtl/TemplateContext-class.html">TemplateContext</a></span> <span class="parameter-name">context</span>, [</span></li>
+<li><span class="parameter" id="render-param-built"><span class="type-annotation">Asset?</span> <span class="parameter-name">built</span></span></li>
+</ol>])
+
+      <div class="features"><span class="feature">override</span></div>
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Renders the given <code>template</code> using its associated <a href="../../jtl/TemplateContext-class.html">TemplateContext</a>.</p>
+<ul>
+<li>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><code>template</code>: The <a href="../../jtl/Template-class.html">Template</a> to render, containing placeholders and
+structure.</li>
+<li><code>context</code>: The <a href="../../jtl/TemplateContext-class.html">TemplateContext</a> providing variable resolution and
+expression evaluation.</li>
+<li><code>built</code>:  An already verified or built <code>Asset</code> to skip building later on</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns</strong></p>
+<ul>
+<li>A <a href="../../jtl/SourceCode-class.html">SourceCode</a> object containing the fully rendered template, raw
+content, and optionally parsed structure or metadata.</li>
+</ul>
+</li>
+<li>
+<p><strong>Behavior</strong></p>
+<ul>
+<li>Performs variable substitution, expression evaluation, and any
+custom template processing (e.g., filters, includes, loops).</li>
+<li>Should gracefully handle missing or null values in the context.</li>
+<li>Implementations may cache intermediate representations or
+compiled templates to improve performance.</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">@override
+SourceCode render(Template template, TemplateContext context, [Asset? built]) {
+  final asset = built ?? _assetBuilder.build(template.getLocation());
+  final rawContent = asset.getContentAsString();
+
+  &#47;&#47; Parse template structure
+  final codeStructure = _parseTemplate(rawContent, context);
+
+  &#47;&#47; Render template with context
+  final renderedContent = _renderTemplate(rawContent, template, context);
+
+  return SourceCodeBuilder()
+      .withAsset(asset)
+      .withCodeStructure(codeStructure)
+      .withRenderedContent(renderedContent)
+      .withRawContent(rawContent)
+      .build();
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">jtl</a></li>
+    <li><a href="../../jtl/">jtl</a></li>
+    <li><a href="../../jtl/DefaultTemplateRenderer-class.html">DefaultTemplateRenderer</a></li>
+    <li class="self-crumb">render method</li>
+</ol>
+
+    <h5>DefaultTemplateRenderer class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+</div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jtl
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

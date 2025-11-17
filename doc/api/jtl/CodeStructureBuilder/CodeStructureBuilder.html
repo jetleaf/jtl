@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the CodeStructureBuilder.new constructor from Class CodeStructureBuilder from the jtl library, for the Dart programming language.">
+  <title>CodeStructureBuilder.new constructor - CodeStructureBuilder - jtl library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">jtl</a></li>
+    <li><a href="../../jtl/">jtl.dart</a></li>
+    <li><a href="../../jtl/CodeStructureBuilder-class.html">CodeStructureBuilder</a></li>
+    <li class="self-crumb">CodeStructureBuilder.new constructor</li>
+  </ol>
+  <div class="self-name">CodeStructureBuilder.new</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="jtl&#47;CodeStructureBuilder-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">CodeStructureBuilder</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+      <span class="name ">CodeStructureBuilder</span>(<wbr>)
+    </section>
+    
+<section class="desc markdown">
+  <p>Creates a new <a href="../../jtl/CodeStructureBuilder-class.html">CodeStructureBuilder</a> instance.</p>
+<p>Builder for constructing a <a href="../../jtl/CodeStructure-class.html">CodeStructure</a> using a <strong>fluent API</strong>.</p>
+<p><a href="../../jtl/CodeStructureBuilder-class.html">CodeStructureBuilder</a> allows incremental creation of a code structure by
+adding individual or multiple <a href="../../jtl/CodeElement-class.html">CodeElement</a> instances and specifying the
+type of code (e.g., HTML, JS, CSS).</p>
+<h3 id="responsibilities">Responsibilities</h3>
+<ul>
+<li>Maintain a list of code elements to be included in the structure.</li>
+<li>Allow configuration of the code type via <a href="../../jtl/CodeStructureBuilder/withType.html">withType</a>.</li>
+<li>Provide fluent methods for adding elements individually or in bulk.</li>
+<li>Construct a <a href="../../jtl/DefaultCodeStructure-class.html">DefaultCodeStructure</a> instance via <a href="../../jtl/CodeStructureBuilder/build.html">build</a>.</li>
+</ul>
+<h3 id="design-notes">Design Notes</h3>
+<ul>
+<li>Supports method chaining for concise and readable code.</li>
+<li>The resulting <a href="../../jtl/CodeStructure-class.html">CodeStructure</a> is immutable; the builder can continue
+being reused or discarded after building.</li>
+<li>Useful in template engines or code generation pipelines.</li>
+</ul>
+<h3 id="usage-example">Usage Example</h3>
+<pre class="language-dart"><code class="language-dart">final builder = CodeStructureBuilder()
+  .withType('HTML')
+  .addElement(TextCodeElement(line: 'Hello', content: 'Hello'))
+  .addElement(HtmlTagElement(tagName: 'div', line: '&lt;div&gt;', content: 'Content'));
+
+final codeStructure = builder.build();
+
+print(codeStructure.getType()); // 'HTML'
+print(codeStructure.getElements().length); // 2
+</code></pre>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">CodeStructureBuilder();</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">jtl</a></li>
+    <li><a href="../../jtl/">jtl</a></li>
+    <li><a href="../../jtl/CodeStructureBuilder-class.html">CodeStructureBuilder</a></li>
+    <li class="self-crumb">CodeStructureBuilder.new constructor</li>
+</ol>
+
+    <h5>CodeStructureBuilder class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jtl
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the DefaultTemplateRenderer.new constructor from Class DefaultTemplateRenderer from the jtl library, for the Dart programming language.">
+  <title>DefaultTemplateRenderer.new constructor - DefaultTemplateRenderer - jtl library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">jtl</a></li>
+    <li><a href="../../jtl/">jtl.dart</a></li>
+    <li><a href="../../jtl/DefaultTemplateRenderer-class.html">DefaultTemplateRenderer</a></li>
+    <li class="self-crumb">DefaultTemplateRenderer.new constructor</li>
+  </ol>
+  <div class="self-name">DefaultTemplateRenderer.new</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="jtl&#47;DefaultTemplateRenderer-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">DefaultTemplateRenderer</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+      <span class="name ">DefaultTemplateRenderer</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="-param-_filterRegistry"><span class="type-annotation"><a href="../../jtl/TemplateFilterRegistry-class.html">TemplateFilterRegistry</a></span> <span class="parameter-name">_filterRegistry</span>, </span></li>
+<li><span class="parameter" id="-param-_assetBuilder"><span class="type-annotation">AssetBuilder</span> <span class="parameter-name">_assetBuilder</span></span></li>
+</ol>)
+    </section>
+    
+<section class="desc markdown">
+  <p>A <strong>template renderer</strong> that converts <code>Template</code> instances into
+fully-rendered source code strings (<code>SourceCode</code>) using context-aware
+processing, variable substitution, conditionals, loops, and filters.</p>
+<p>This renderer is part of a template processing framework and works with
+a <a href="../../jtl/TemplateFilterRegistry-class.html">TemplateFilterRegistry</a> to apply custom transformations to variables during
+rendering.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>Parses template structure to identify includes, conditionals, loops, and variables.</li>
+<li>Renders templates with context-aware variable resolution.</li>
+<li>Supports <strong>nested templates</strong>, conditional blocks, loops, and custom filters.</li>
+<li>Escapes HTML by default to prevent XSS vulnerabilities.</li>
+<li>Returns a <a href="../../jtl/SourceCode-class.html">SourceCode</a> object containing raw content, rendered content, and code structure.</li>
+</ul>
+<h3 id="template-syntax">Template Syntax</h3>
+<ul>
+<li><strong>Includes</strong>: <code>{{&gt; templateName}}</code></li>
+<li><strong>Conditionals</strong>: <code>{{#if condition}}content{{/if}}</code></li>
+<li><strong>Loops</strong>: <code>{{#each items}}content{{/each}}</code></li>
+<li><strong>Variables</strong>: <code>{{variableName}}</code></li>
+<li><strong>Variables with filters</strong>: <code>{{variableName | filter1 | filter2}}</code></li>
+</ul>
+<h3 id="example-usage">Example Usage</h3>
+<pre class="language-dart"><code class="language-dart">final renderer = DefaultTemplateRenderer(filterRegistry);
+final template = Template(
+  getLocation: () =&gt; '&lt;h1&gt;{{title}}&lt;/h1&gt;',
+  getContext: () =&gt; DefaultTemplateContext({'title': 'Hello World'}),
+);
+
+final result = renderer.render(template);
+print(result.renderedContent); // &lt;h1&gt;Hello World&lt;/h1&gt;
+</code></pre>
+<h3 id="processing-order">Processing Order</h3>
+<ol>
+<li>Includes (<code>{{&gt; ...}}</code>)</li>
+<li>Conditional blocks (<code>{{#if ...}} ... {{/if}}</code>)</li>
+<li>Loops (<code>{{#each ...}} ... {{/each}}</code>)</li>
+<li>Filters (<code>{{variable | filter1 | filter2}}</code>)</li>
+<li>Variables (<code>{{variable}}</code>)</li>
+</ol>
+<h3 id="design-notes">Design Notes</h3>
+<ul>
+<li>Simple regex-based parsing for structural elements (includes, conditionals, loops).</li>
+<li>Context cloning ensures each loop iteration has isolated variables like <code>this</code>, <code>@index</code>, <code>@first</code>, <code>@last</code>.</li>
+<li>Filter processing uses the provided <a href="../../jtl/TemplateFilterRegistry-class.html">TemplateFilterRegistry</a> to transform variable output.</li>
+<li>HTML escaping applied to variable values by default.</li>
+</ul>
+<h3 id="see-also">See Also</h3>
+<ul>
+<li><a href="../../jtl/Template-class.html">Template</a></li>
+<li><a href="../../jtl/TemplateContext-class.html">TemplateContext</a></li>
+<li><a href="../../jtl/TemplateFilterRegistry-class.html">TemplateFilterRegistry</a></li>
+<li><a href="../../jtl/SourceCode-class.html">SourceCode</a></li>
+</ul>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">DefaultTemplateRenderer(this._filterRegistry, this._assetBuilder);</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">jtl</a></li>
+    <li><a href="../../jtl/">jtl</a></li>
+    <li><a href="../../jtl/DefaultTemplateRenderer-class.html">DefaultTemplateRenderer</a></li>
+    <li class="self-crumb">DefaultTemplateRenderer.new constructor</li>
+</ol>
+
+    <h5>DefaultTemplateRenderer class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jtl
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

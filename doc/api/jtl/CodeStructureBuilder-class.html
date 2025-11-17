@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the CodeStructureBuilder class from the jtl library, for the Dart programming language.">
+  <title>CodeStructureBuilder class - jtl library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">jtl</a></li>
+    <li><a href="../jtl/">jtl.dart</a></li>
+    <li class="self-crumb">CodeStructureBuilder class</li>
+  </ol>
+  <div class="self-name">CodeStructureBuilder</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="jtl&#47;jtl-library-sidebar.html"
+    data-below-sidebar="jtl&#47;CodeStructureBuilder-class-sidebar.html">
+    <div>
+<h1><span class="kind-class">CodeStructureBuilder</span> class 
+    <a href="https://dart.dev/language/class-modifiers#final" class="feature feature-final" title="This class can neither be extended, implemented, nor mixed in.">final</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>Builder for constructing a <a href="../jtl/CodeStructure-class.html">CodeStructure</a> using a <strong>fluent API</strong>.</p>
+<p><a href="../jtl/CodeStructureBuilder-class.html">CodeStructureBuilder</a> allows incremental creation of a code structure by
+adding individual or multiple <a href="../jtl/CodeElement-class.html">CodeElement</a> instances and specifying the
+type of code (e.g., HTML, JS, CSS).</p>
+<h3 id="responsibilities">Responsibilities</h3>
+<ul>
+<li>Maintain a list of code elements to be included in the structure.</li>
+<li>Allow configuration of the code type via <a href="../jtl/CodeStructureBuilder/withType.html">withType</a>.</li>
+<li>Provide fluent methods for adding elements individually or in bulk.</li>
+<li>Construct a <a href="../jtl/DefaultCodeStructure-class.html">DefaultCodeStructure</a> instance via <a href="../jtl/CodeStructureBuilder/build.html">build</a>.</li>
+</ul>
+<h3 id="design-notes">Design Notes</h3>
+<ul>
+<li>Supports method chaining for concise and readable code.</li>
+<li>The resulting <a href="../jtl/CodeStructure-class.html">CodeStructure</a> is immutable; the builder can continue
+being reused or discarded after building.</li>
+<li>Useful in template engines or code generation pipelines.</li>
+</ul>
+<h3 id="usage-example">Usage Example</h3>
+<pre class="language-dart"><code class="language-dart">final builder = CodeStructureBuilder()
+  .withType('HTML')
+  .addElement(TextCodeElement(line: 'Hello', content: 'Hello'))
+  .addElement(HtmlTagElement(tagName: 'div', line: '&lt;div&gt;', content: 'Content'));
+
+final codeStructure = builder.build();
+
+print(codeStructure.getType()); // 'HTML'
+print(codeStructure.getElements().length); // 2
+</code></pre>
+</section>
+
+
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="CodeStructureBuilder.new" class="callable">
+          <span class="name"><a href="../jtl/CodeStructureBuilder/CodeStructureBuilder.html">CodeStructureBuilder.new</a></span><span class="signature">()</span>
+        </dt>
+        <dd>
+          Creates a new <a href="../jtl/CodeStructureBuilder-class.html">CodeStructureBuilder</a> instance.
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="addElement" class="callable">
+  <span class="name"><a href="../jtl/CodeStructureBuilder/addElement.html">addElement</a></span><span class="signature">(<wbr><span class="parameter" id="addElement-param-element"><span class="type-annotation"><a href="../jtl/CodeElement-class.html">CodeElement</a></span> <span class="parameter-name">element</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../jtl/CodeStructureBuilder-class.html">CodeStructureBuilder</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Adds a single <code>element</code> to the code structure.
+  
+
+</dd>
+
+        <dt id="addElements" class="callable">
+  <span class="name"><a href="../jtl/CodeStructureBuilder/addElements.html">addElements</a></span><span class="signature">(<wbr><span class="parameter" id="addElements-param-elements"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../jtl/CodeElement-class.html">CodeElement</a></span>&gt;</span></span> <span class="parameter-name">elements</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../jtl/CodeStructureBuilder-class.html">CodeStructureBuilder</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Adds multiple <code>elements</code> to the code structure.
+  
+
+</dd>
+
+        <dt id="build" class="callable">
+  <span class="name"><a href="../jtl/CodeStructureBuilder/build.html">build</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../jtl/CodeStructure-class.html">CodeStructure</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Builds the <a href="../jtl/CodeStructure-class.html">CodeStructure</a> using the accumulated elements and type.
+  
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="withType" class="callable">
+  <span class="name"><a href="../jtl/CodeStructureBuilder/withType.html">withType</a></span><span class="signature">(<wbr><span class="parameter" id="withType-param-type"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">type</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../jtl/CodeStructureBuilder-class.html">CodeStructureBuilder</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Sets the code type (e.g., <code>'HTML'</code>, <code>'JS'</code>, <code>'CSS'</code>) for the structure.
+  
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">jtl</a></li>
+    <li><a href="../jtl/">jtl</a></li>
+    <li class="self-crumb">CodeStructureBuilder class</li>
+</ol>
+
+    <h5>jtl library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jtl
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

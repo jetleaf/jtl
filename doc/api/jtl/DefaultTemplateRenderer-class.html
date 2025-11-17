@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the DefaultTemplateRenderer class from the jtl library, for the Dart programming language.">
+  <title>DefaultTemplateRenderer class - jtl library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">jtl</a></li>
+    <li><a href="../jtl/">jtl.dart</a></li>
+    <li class="self-crumb">DefaultTemplateRenderer class</li>
+  </ol>
+  <div class="self-name">DefaultTemplateRenderer</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="jtl&#47;jtl-library-sidebar.html"
+    data-below-sidebar="jtl&#47;DefaultTemplateRenderer-class-sidebar.html">
+    <div>
+<h1><span class="kind-class">DefaultTemplateRenderer</span> class 
+    <a href="https://dart.dev/language/class-modifiers#final" class="feature feature-final" title="This class can neither be extended, implemented, nor mixed in.">final</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>A <strong>template renderer</strong> that converts <code>Template</code> instances into
+fully-rendered source code strings (<code>SourceCode</code>) using context-aware
+processing, variable substitution, conditionals, loops, and filters.</p>
+<p>This renderer is part of a template processing framework and works with
+a <a href="../jtl/TemplateFilterRegistry-class.html">TemplateFilterRegistry</a> to apply custom transformations to variables during
+rendering.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>Parses template structure to identify includes, conditionals, loops, and variables.</li>
+<li>Renders templates with context-aware variable resolution.</li>
+<li>Supports <strong>nested templates</strong>, conditional blocks, loops, and custom filters.</li>
+<li>Escapes HTML by default to prevent XSS vulnerabilities.</li>
+<li>Returns a <a href="../jtl/SourceCode-class.html">SourceCode</a> object containing raw content, rendered content, and code structure.</li>
+</ul>
+<h3 id="template-syntax">Template Syntax</h3>
+<ul>
+<li><strong>Includes</strong>: <code>{{&gt; templateName}}</code></li>
+<li><strong>Conditionals</strong>: <code>{{#if condition}}content{{/if}}</code></li>
+<li><strong>Loops</strong>: <code>{{#each items}}content{{/each}}</code></li>
+<li><strong>Variables</strong>: <code>{{variableName}}</code></li>
+<li><strong>Variables with filters</strong>: <code>{{variableName | filter1 | filter2}}</code></li>
+</ul>
+<h3 id="example-usage">Example Usage</h3>
+<pre class="language-dart"><code class="language-dart">final renderer = DefaultTemplateRenderer(filterRegistry);
+final template = Template(
+  getLocation: () =&gt; '&lt;h1&gt;{{title}}&lt;/h1&gt;',
+  getContext: () =&gt; DefaultTemplateContext({'title': 'Hello World'}),
+);
+
+final result = renderer.render(template);
+print(result.renderedContent); // &lt;h1&gt;Hello World&lt;/h1&gt;
+</code></pre>
+<h3 id="processing-order">Processing Order</h3>
+<ol>
+<li>Includes (<code>{{&gt; ...}}</code>)</li>
+<li>Conditional blocks (<code>{{#if ...}} ... {{/if}}</code>)</li>
+<li>Loops (<code>{{#each ...}} ... {{/each}}</code>)</li>
+<li>Filters (<code>{{variable | filter1 | filter2}}</code>)</li>
+<li>Variables (<code>{{variable}}</code>)</li>
+</ol>
+<h3 id="design-notes">Design Notes</h3>
+<ul>
+<li>Simple regex-based parsing for structural elements (includes, conditionals, loops).</li>
+<li>Context cloning ensures each loop iteration has isolated variables like <code>this</code>, <code>@index</code>, <code>@first</code>, <code>@last</code>.</li>
+<li>Filter processing uses the provided <a href="../jtl/TemplateFilterRegistry-class.html">TemplateFilterRegistry</a> to transform variable output.</li>
+<li>HTML escaping applied to variable values by default.</li>
+</ul>
+<h3 id="see-also">See Also</h3>
+<ul>
+<li><a href="../jtl/Template-class.html">Template</a></li>
+<li><a href="../jtl/TemplateContext-class.html">TemplateContext</a></li>
+<li><a href="../jtl/TemplateFilterRegistry-class.html">TemplateFilterRegistry</a></li>
+<li><a href="../jtl/SourceCode-class.html">SourceCode</a></li>
+</ul>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+
+        
+  <dt>Implemented types</dt>
+  <dd>
+    <ul class="comma-separated clazz-relationships">
+        <li><a href="../jtl/TemplateRenderer-class.html">TemplateRenderer</a></li>
+    </ul>
+  </dd>
+        
+
+
+        
+        
+
+
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="DefaultTemplateRenderer.new" class="callable">
+          <span class="name"><a href="../jtl/DefaultTemplateRenderer/DefaultTemplateRenderer.html">DefaultTemplateRenderer.new</a></span><span class="signature">(<span class="parameter" id="-param-_filterRegistry"><span class="type-annotation"><a href="../jtl/TemplateFilterRegistry-class.html">TemplateFilterRegistry</a></span> <span class="parameter-name">_filterRegistry</span>, </span><span class="parameter" id="-param-_assetBuilder"><span class="type-annotation">AssetBuilder</span> <span class="parameter-name">_assetBuilder</span></span>)</span>
+        </dt>
+        <dd>
+          A <strong>template renderer</strong> that converts <code>Template</code> instances into
+fully-rendered source code strings (<code>SourceCode</code>) using context-aware
+processing, variable substitution, conditionals, loops, and filters.
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="render" class="callable">
+  <span class="name"><a href="../jtl/DefaultTemplateRenderer/render.html">render</a></span><span class="signature">(<wbr><span class="parameter" id="render-param-template"><span class="type-annotation"><a href="../jtl/Template-class.html">Template</a></span> <span class="parameter-name">template</span>, </span><span class="parameter" id="render-param-context"><span class="type-annotation"><a href="../jtl/TemplateContext-class.html">TemplateContext</a></span> <span class="parameter-name">context</span>, [</span><span class="parameter" id="render-param-built"><span class="type-annotation">Asset?</span> <span class="parameter-name">built</span></span>])
+    <span class="returntype parameter">&#8594; <a href="../jtl/SourceCode-class.html">SourceCode</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Renders the given <code>template</code> using its associated <a href="../jtl/TemplateContext-class.html">TemplateContext</a>.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">jtl</a></li>
+    <li><a href="../jtl/">jtl</a></li>
+    <li class="self-crumb">DefaultTemplateRenderer class</li>
+</ol>
+
+    <h5>jtl library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jtl
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

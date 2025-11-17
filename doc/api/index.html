@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="jtl API docs, for the Dart programming language.">
+  <title>jtl - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://jetleaf.hapnium.com">jtl package</a></li>
+  </ol>
+  <div class="self-name">jtl</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="-jetleaf-templateengine">🧩 JetLeaf TemplateEngine</h1>
+<p>JetLeaf’s powerful and lightweight HTML templating engine — built exclusively for the JetLeaf backend framework.<br>
+It uses <strong>JTL</strong> (JetLeaf Template Language), a Mustache-style syntax for writing dynamic HTML with variables, loops, conditionals, and partial includes.</p>
+<blockquote>
+<p>JTL is designed for seamless server-side rendering in Dart using pure HTML templates with logic annotations.</p>
+</blockquote>
+<hr>
+<h2 id="-what-is-jtl">💡 What is JTL?</h2>
+<p><strong>JTL (JetLeaf Template Language)</strong> is a markup syntax built into JetLeaf.<br>
+It combines expressive logic (e.g., loops, conditionals, includes) with readable HTML, making it ideal for building dynamic views.</p>
+<p>JTL templates are typically <code>.html</code> files processed at runtime.<br>
+They support rich rendering features without mixing Dart code into HTML.</p>
+<hr>
+<h1 id="jtl-template-engine---production-ready-refactor">JTL Template Engine - Production-Ready Refactor</h1>
+<p>A powerful, modular, and well-architected template engine for the JetLeaf framework. Built with separation of concerns, clean abstractions, and production-ready robustness.</p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The refactored JTL template engine follows a <strong>layered architecture</strong> with clear separation of concerns:</p>
+<pre class="language-dart"><code>┌─────────────────────────────────────┐
+│     Template Engine Factory         │
+│  (High-level API &amp; Orchestration)   │
+└──────────────────┬──────────────────┘
+                   │
+    ┌──────────────┼──────────────┐
+    │              │              │
+┌───▼────┐  ┌─────▼──────┐  ┌────▼────────┐
+│Template │  │  Renderer  │  │    Cache    │
+│Context  │  │            │  │             │
+└────┬────┘  └─────┬──────┘  └─────────────┘
+     │             │
+     └──────┬──────┘
+            │
+    ┌───────▼────────┐
+    │ Code Structure │
+    │   &amp; Elements   │
+    └────────────────┘
+</code></pre>
+<h3 id="core-components">Core Components</h3>
+<h4 id="1-template-context-template_contextdart">1. <strong>Template Context</strong> (<code>template_context.dart</code>)</h4>
+<p>Manages template variables, variable resolution, and expression evaluation.</p>
+<ul>
+<li><strong>TemplateVariableResolver</strong>: Resolves variable names to values</li>
+<li><strong>TemplateExpressionEvaluator</strong>: Evaluates conditional expressions</li>
+<li><strong>TemplateContext</strong>: Central context providing all dynamic data</li>
+</ul>
+<h4 id="2-code-structure-code_structuredart-code_elementdart">2. <strong>Code Structure</strong> (<code>code_structure.dart</code>, <code>code_element.dart</code>)</h4>
+<p>Represents the parsed structure of templates for introspection and analysis.</p>
+<ul>
+<li><strong>CodeElement</strong>: Base abstraction for code fragments</li>
+<li><strong>CodeStructure</strong>: Hierarchical representation of template structure</li>
+<li><strong>Statement Types</strong>: ConditionalStatement, ForEachStatement, IncludeStatement</li>
+</ul>
+<h4 id="3-template-renderer-template_rendererdart">3. <strong>Template Renderer</strong> (<code>template_renderer.dart</code>)</h4>
+<p>Processes templates with context data to produce rendered output.</p>
+<ul>
+<li><strong>TemplateRenderer</strong>: Core rendering interface</li>
+<li><strong>DefaultTemplateRenderer</strong>: Full-featured implementation</li>
+<li>Handles parsing, variable resolution, expression evaluation, and filtering</li>
+</ul>
+<h4 id="4-filter-registry-filter_registrydart">4. <strong>Filter Registry</strong> (<code>filter_registry.dart</code>)</h4>
+<p>Manages reusable filters for value transformation.</p>
+<ul>
+<li>Built-in filters: uppercase, lowercase, capitalize, etc.</li>
+<li>Custom filter registration</li>
+<li>Filter chaining support</li>
+</ul>
+<h4 id="5-template-engine-factory-template_engine_factorydart">5. <strong>Template Engine Factory</strong> (<code>template_engine_factory.dart</code>)</h4>
+<p>High-level API for creating configured engine instances.</p>
+<ul>
+<li>Singleton pattern for consistency</li>
+<li>Global filter management</li>
+<li>Template creation and rendering helpers</li>
+</ul>
+<h4 id="6-template-cache-template_cachedart">6. <strong>Template Cache</strong> (<code>template_cache.dart</code>)</h4>
+<p>Implements performance optimization through caching.</p>
+<ul>
+<li>Optional caching with configurable behavior</li>
+<li>Cache management (clear, size tracking)</li>
+<li>Cache key generation</li>
+</ul>
+<h2 id="-features">✨ Features</h2>
+<h3 id="variable-interpolation">Variable Interpolation</h3>
+<pre class="language-handlebars"><code class="language-handlebars">{{variableName}}
+{{user.email}}
+{{user.profile.name}}
+</code></pre>
+<ul>
+<li>🧠 <strong>Logic-aware templates</strong> using <code>{{}}</code> syntax</li>
+<li>🔁 <strong>Loops</strong> (<code>{{#each items}} ... {{/each}}</code>)</li>
+<li>❓ <strong>Conditionals</strong> (<code>{{#if condition}} ... {{/if}}</code>)</li>
+<li>📦 <strong>Includes</strong> (<code>{{&gt; partial}}</code>)</li>
+<li>🧬 <strong>Nested Properties</strong> (e.g., <code>{{user.address.city}}</code>)</li>
+<li>⚡ <strong>Runtime caching</strong> for speed</li>
+<li>🛡️ <strong>Safe auto-escaping</strong> (XSS prevention)</li>
+</ul>
+<hr>
+<h2 id="-jtl-syntax-reference">🔤 JTL Syntax Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Syntax Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variable</td>
+<td><code>{{user.name}}</code></td>
+</tr>
+<tr>
+<td>If block</td>
+<td><code>{{#if isAdmin}}Welcome Admin{{/if}}</code></td>
+</tr>
+<tr>
+<td>Each block</td>
+<td><code>{{#each users}}&lt;li&gt;{{this}}&lt;/li&gt;{{/each}}</code></td>
+</tr>
+<tr>
+<td>Include</td>
+<td><code>{{&gt; header}}</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-getting-started">🚀 Getting Started</h2>
+<h3 id="1-add-a-jtl-html-template">1. Add a JTL HTML Template</h3>
+<p>Create <code>resources/html/user-profile.html</code>:</p>
+<pre class="language-html"><code class="language-html">&lt;h1&gt;Hello, {{user.name}}&lt;/h1&gt;
+&lt;p&gt;Email: {{user.email}}&lt;/p&gt;
+
+{{#if isAdmin}}
+  &lt;div class="admin-box"&gt;You have admin privileges&lt;/div&gt;
+{{/if}}
+
+&lt;ul&gt;
+  {{#each user.tags}}
+    &lt;li&gt;{{this}}&lt;/li&gt;
+  {{/each}}
+&lt;/ul&gt;
+
+{{&gt; footer}}
+</code></pre>
+<hr>
+<h3 id="2-render-it-with-dart">2. Render it with Dart</h3>
+<pre class="language-dart"><code class="language-dart">import 'package:jetleaf/jtl.dart';
+
+void main() async {
+  final engine = JtlTemplateEngine(baseDirectory: 'resources/html');
+
+  final output = await engine.render('user-profile', {
+    'user': {
+      'name': 'Alice',
+      'email': 'alice@example.com',
+      'tags': ['admin', 'active']
+    },
+    'isAdmin': true
+  });
+
+  print(output);
+}
+</code></pre>
+<hr>
+<h2 id="-advanced-jtl-features">🧠 Advanced JTL Features</h2>
+<h3 id="-nested-variables">🔄 Nested Variables</h3>
+<pre class="language-html"><code class="language-html">&lt;p&gt;{{user.profile.contact.phone}}&lt;/p&gt;
+</code></pre>
+<h3 id="-loop-helpers">🔁 Loop Helpers</h3>
+<p>Inside a <code>{{#each}}</code> block:</p>
+<table>
+<thead>
+<tr>
+<th>Helper</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{{this}}</code></td>
+<td>Current item</td>
+</tr>
+<tr>
+<td><code>{{@index}}</code></td>
+<td>Index of item</td>
+</tr>
+<tr>
+<td><code>{{@first}}</code></td>
+<td>True if first in loop</td>
+</tr>
+<tr>
+<td><code>{{@last}}</code></td>
+<td>True if last in loop</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="-template-includes">📦 Template Includes</h3>
+<p>JTL supports modular templates via <code>{{&gt; partial}}</code>:</p>
+<pre class="language-html"><code class="language-html">{{&gt; header}}   &lt;!-- Loads header.html --&gt;
+{{&gt; footer}}   &lt;!-- Loads footer.html --&gt;
+</code></pre>
+<p>Includes are resolved relative to your base directory.</p>
+<hr>
+<h2 id="-html-escaping">🧼 HTML Escaping</h2>
+<p>By default, all variables are escaped to prevent XSS:</p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Escaped As</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;</code></td>
+<td><code>&amp;amp;</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td><code>&amp;lt;</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td><code>&amp;gt;</code></td>
+</tr>
+<tr>
+<td><code>"</code></td>
+<td><code>&amp;quot;</code></td>
+</tr>
+<tr>
+<td><code>'</code></td>
+<td><code>&amp;#x27;</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Support for unescaped HTML (<code>{{{ rawHtml }}}</code>) is planned.</p>
+</blockquote>
+<hr>
+<h2 id="-how-it-works-jtl-lifecycle">⚙️ How It Works (JTL Lifecycle)</h2>
+<ol>
+<li>
+<p>Loads the template from <code>baseDirectory</code></p>
+</li>
+<li>
+<p>Resolves <code>{{&gt; includes}}</code></p>
+</li>
+<li>
+<p>Evaluates:</p>
+<ul>
+<li><code>{{#if}}</code>, <code>{{#each}}</code></li>
+<li><code>{{@index}}</code>, <code>{{this}}</code>, etc.</li>
+<li>Variable interpolation like <code>{{user.name}}</code></li>
+</ul>
+</li>
+<li>
+<p>Merges final HTML output</p>
+</li>
+</ol>
+<hr>
+<h2 id="-caching">🚀 Caching</h2>
+<p>Templates are compiled and cached at runtime.</p>
+<ul>
+<li>To disable caching:</li>
+</ul>
+<pre class="language-dart"><code class="language-dart">TemplateEngine(baseDirectory: 'resources/html', enableCaching: false);
+</code></pre>
+<ul>
+<li>To manually clear:</li>
+</ul>
+<pre class="language-dart"><code class="language-dart">engine.clearCache();
+</code></pre>
+<hr>
+<h2 id="-recommended-structure">📁 Recommended Structure</h2>
+<pre class="language-dart"><code>project_root/
+├── resources/
+│   └── html/
+│       ├── user-profile.html
+│       ├── header.html
+│       ├── footer.html
+│       └── error/
+│           ├── 404.html
+│           ├── 500.html
+│           └── home.html
+</code></pre>
+<hr>
+<h2 id="-license">📄 License</h2>
+<p>MIT License © JetLeaf Framework Authors</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="jtl">
+  <span class="name"><a href="jtl/">jtl</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="https://jetleaf.hapnium.com">jtl package</a></li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">jtl</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="jtl/">jtl</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    jtl
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
