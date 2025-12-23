@@ -431,7 +431,7 @@ final class JtlFactory implements ConfigurableJtl {
     TemplateVariableResolver? variableResolver,
     TemplateRenderer? renderer,
   })  : _templateCache = templateCache ?? InMemoryTemplateCache(),
-        _assetBuilder = assetBuilder ?? DefaultAssetBuilder(),
+        _assetBuilder = assetBuilder ?? AssetBuilder(),
         _filterRegistry = filterRegistry ?? TemplateFilterRegistry(),
         _expressionEvaluator = expressionEvaluator ?? DefaultExpressionEvaluator(),
         _variableResolver = variableResolver ?? DefaultVariableResolver(),
